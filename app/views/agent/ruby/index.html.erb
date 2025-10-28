@@ -1,0 +1,61 @@
+<div class="mx-auto max-w-4xl px-4 py-8">
+  <%= link_to root_path,
+              class: "mb-6 inline-flex items-center text-sm text-gray-600
+                      hover:text-gray-900" do %>
+    <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor"
+         viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 19l-7-7 7-7"/>
+    </svg>
+    Back to spikes
+  <% end %>
+
+  <div class="mb-8">
+    <h1 class="mb-2 text-3xl font-bold">Claude Agent SDK (Ruby)</h1>
+    <p class="text-gray-600">
+      Testing claude-agent-sdk gem with custom MCP tools
+    </p>
+  </div>
+
+  <div
+    data-controller="ruby-sdk-chat"
+    data-ruby-sdk-chat-channel-value="Agent::RubyChannel"
+    class="flex flex-col gap-4"
+  >
+    <div
+      data-ruby-sdk-chat-target="messages"
+      class="flex min-h-96 flex-col gap-3 rounded-lg border
+             border-gray-200 bg-white p-4"
+    >
+      <div class="text-sm text-gray-500">
+        Send a message to start the conversation
+      </div>
+    </div>
+
+    <%= form_with(
+      url: "#",
+      data: {
+        action: "submit->ruby-sdk-chat#send",
+        ruby_sdk_chat_target: "form"
+      },
+      class: "flex gap-2"
+    ) do |f| %>
+      <%= f.text_field(
+        :message,
+        data: { ruby_sdk_chat_target: "input" },
+        placeholder: "What tables are in the database?",
+        class: "flex-1 rounded-lg border border-gray-300 px-4 py-2
+                focus:border-blue-500 focus:outline-none focus:ring-1
+                focus:ring-blue-500"
+      ) %>
+      <%= f.submit(
+        "Send",
+        data: { ruby_sdk_chat_target: "submit" },
+        class: "rounded-lg bg-blue-600 px-6 py-2 font-medium
+                text-white hover:bg-blue-700 focus:outline-none
+                focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                disabled:opacity-50"
+      ) %>
+    <% end %>
+  </div>
+</div>

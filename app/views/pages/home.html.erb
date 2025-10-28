@@ -1,0 +1,70 @@
+<div class="mx-auto max-w-4xl px-4 py-12">
+  <div class="mb-12 text-center">
+    <h1 class="mb-4 text-4xl font-bold">Claude Agent Rails Spike</h1>
+    <p class="text-lg text-gray-600">
+      Exploring three approaches to integrating Claude Code's agentic
+      capabilities into a Rails application
+    </p>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-3">
+    <%= link_to agent_claude_agent_sdk_ruby_path,
+                class: "block rounded-lg border border-gray-200 bg-white
+                        p-6 transition hover:border-blue-500
+                        hover:shadow-lg" do %>
+      <div class="mb-2 text-sm font-semibold uppercase text-blue-600">
+        Spike 1
+      </div>
+      <h2 class="mb-2 text-xl font-bold">Ruby SDK</h2>
+      <p class="mb-4 text-sm text-gray-600">
+        Pure Ruby via <code class="rounded bg-gray-100 px-1 py-0.5 text-xs">
+        claude-agent-sdk</code> gem
+      </p>
+      <div class="text-xs text-gray-500">
+        /agent/claude-agent-sdk-ruby
+      </div>
+    <% end %>
+
+    <%= link_to agent_claude_agent_sdk_typescript_path,
+                class: "block rounded-lg border border-gray-200 bg-white
+                        p-6 transition hover:border-blue-500
+                        hover:shadow-lg" do %>
+      <div class="mb-2 text-sm font-semibold uppercase text-blue-600">
+        Spike 2
+      </div>
+      <h2 class="mb-2 text-xl font-bold">TypeScript SDK</h2>
+      <p class="mb-4 text-sm text-gray-600">
+        Node.js service with HTTP/SSE bridge
+      </p>
+      <div class="text-xs text-gray-500">
+        /agent/claude-agent-sdk-typescript
+      </div>
+    <% end %>
+
+    <%= link_to agent_claude_code_acp_path,
+                class: "block rounded-lg border border-gray-200 bg-white
+                        p-6 transition hover:border-blue-500
+                        hover:shadow-lg" do %>
+      <div class="mb-2 text-sm font-semibold uppercase text-blue-600">
+        Spike 3
+      </div>
+      <h2 class="mb-2 text-xl font-bold">Agent Client Protocol</h2>
+      <p class="mb-4 text-sm text-gray-600">
+        JSON-RPC over stdio using ACP
+      </p>
+      <div class="text-xs text-gray-500">
+        /agent/claude-code-acp
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-12 rounded-lg bg-gray-50 p-6">
+    <h3 class="mb-2 font-semibold">About This Spike</h3>
+    <p class="text-sm text-gray-600">
+      Each approach implements a chat interface with a custom
+      <code class="rounded bg-gray-100 px-1 py-0.5">check_schema</code>
+      tool that queries the database tables. The goal is to compare
+      feasibility, complexity, and developer experience.
+    </p>
+  </div>
+</div>

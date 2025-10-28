@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(bin/setup)",
+      "WebSearch",
+      "WebFetch(domain:uithub.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "deny": [],
     "ask": []

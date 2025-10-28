@@ -158,7 +158,7 @@ Each approach handles database queries differently:
 ## Memories
 
 - Use context7 MCP for looking up
-- Use uithub (not a typo) for exploring GitHub repos
+- Replace github.com links with uithub.com to get an LLM-friendly repo summary
 - Don't write unnecessary comments
 - Don't remove existing comments (especially model annotations)
 - Prefer `it` (or `_1`, `_2`) instead of `|x| x` for one-liners

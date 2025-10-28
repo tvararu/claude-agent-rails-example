@@ -1,0 +1,11 @@
+[env]
+# Claude Code Authentication (choose ONE method):
+
+# Option 1: OAuth Token (recommended - uses subscription billing)
+# Run: claude setup-token
+# Then copy the token here:
+# CLAUDE_CODE_OAUTH_TOKEN = "sk-ant-oat01-..."
+
+# Option 2: API Key (uses pay-as-you-go billing)
+# Get from: https://console.anthropic.com/settings/keys
+# ANTHROPIC_API_KEY = "sk-ant-api03-..."
