@@ -51,6 +51,7 @@ rails new claude-agent-rails-spike \
 To run:
 
 ```sh
+cp mise.local.toml.example mise.local.toml
 mise install
 bin/setup
 ```
