@@ -11,7 +11,9 @@
       "Read(//private/tmp/**)",
       "Bash(tar:*)",
       "Bash(npm pack:*)",
-      "Bash(node test-sdk.mjs:*)"
+      "Bash(node test-sdk.mjs:*)",
+      "Bash(npx claude:*)",
+      "Bash(bin/rails routes:*)"
     ],
     "deny": [],
     "ask": []

@@ -30,7 +30,7 @@ class Agent::RubyChannel < ApplicationCable::Channel
   private
 
   def current_user_id
-    @current_user_id ||= connection.connection_identifier
+    connection_id
   end
 
   def handle_agent_message(message)
