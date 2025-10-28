@@ -16,6 +16,21 @@ the official TypeScript SDK, and a persistent sidecar Node process
 unofficial [Agent Client Protocol](https://agentclientprotocol.com) wrapper and
 separate subprocesses
 
+The spikes are documented in `./docs/`.
+
+## Motivation
+
+Claude Code is a very powerful framework for automation, not just for writing
+code. There are many usecases where giving an LLM tool-use, filesystem access,
+and permission to run and execute scripts vastly enhances its capabilities.
+
+While the objective of this repo is to display a GUI that lets you chat to a
+Claude Code-style interface directly, that's not the only way. You can spawn an
+agent entirely in the background, using jobs/workers, and give it tools to read
+and write to the database.
+
+This spike is about finding the cleanest, most maintainable way to do so.
+
 ## Setup
 
 This repo was generated with:
