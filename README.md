@@ -16,17 +16,25 @@ the official TypeScript SDK, and a persistent sidecar Node process
 unofficial [Agent Client Protocol](https://agentclientprotocol.com) wrapper and
 separate subprocesses
 
+![Demo video](docs/demo.mov)
+
 The spikes are documented in `./docs/`.
+
+Implementations:
+
+- https://github.com/tvararu/claude-agent-rails-spike/pull/1
+- https://github.com/tvararu/claude-agent-rails-spike/pull/2
+- https://github.com/tvararu/claude-agent-rails-spike/pull/3
 
 ## Architecture comparison
 
 | Aspect | Ruby SDK | TypeScript SDK | ACP |
 |--------|----------|----------------|-----|
-| **Communication** | Gem manages subprocess | HTTP POST/SSE | JSON-RPC stdio |
+| **Communication** | Gem manages subprocess | HTTP POST/SSE | Subprocess + stream JSON |
 | **Services** | Single (Rails) | Multi (Rails + Node) | Single (Rails) |
 | **Tool Pattern** | In-process MCP | HTTP callbacks | MCP via stdio |
-| **Language** | Pure Ruby | Ruby + TypeScript | Ruby + MCP protocol |
-| **Standardization** | Unofficial gem | Official SDK | Emerging protocol |
+| **Language** | Ruby + Node (gem-managed) | Ruby + TypeScript | Ruby + Node (CLI) |
+| **Standardization** | Unofficial gem | Official SDK | MCP protocol |
 
 ## Motivation
 
@@ -70,13 +78,89 @@ bin/setup
 
 ### Spike 1 (Claude Agent SDK Ruby)
 
+**Architecture:**
+```
+┌─────────┐      ┌──────────────┐      ┌─────────────────────┐      ┌────────────┐
+│ Browser │─────▶│ Rails Server │─────▶│ claude-agent-sdk-   │─────▶│ Claude API │
+│         │◀─────│ (ActionCable)│◀─────│ ruby Gem            │◀─────│            │
+└─────────┘      └──────────────┘      │ (manages Node       │      └────────────┘
+                         │             │  subprocess)        │
+                         │             └─────────────────────┘
+                         ▼                        │
+                  ┌──────────────┐                │
+                  │ ActiveRecord │◀───────────────┘
+                  │  (MCP tools) │   In-process calls
+                  └──────────────┘
+```
+
+**Key Points:**
+- Single Rails service, gem manages Node subprocess internally
+- MCP tools execute in-process with direct ActiveRecord access
+- Simplest integration, minimal configuration
+
 ![Claude Agent SDK Ruby](docs/spike-ruby-sdk-screenshot.png)
 
 ### Spike 2 (Claude Agent SDK TypeScript)
 
+**Architecture:**
+```
+┌─────────┐      ┌──────────────┐      ┌─────────────────┐      ┌────────────┐
+│ Browser │─────▶│ Rails Server │─────▶│ Node Service    │─────▶│ Claude API │
+│         │◀─────│ (ActionCable)│◀─────│ (TypeScript SDK)│◀─────│            │
+└─────────┘      └──────────────┘      └─────────────────┘      └────────────┘
+                         ▲                        │
+                         │                        │ Tool execution
+                         │                        │ (HTTP callbacks)
+                         │                        ▼
+                         │              ┌─────────────────┐
+                         └──────────────│ Rails API       │
+                            HTTP POST   │  /api/schema    │
+                                        └─────────────────┘
+                                                 │
+                                                 ▼
+                                          ┌──────────────┐
+                                          │ ActiveRecord │
+                                          └──────────────┘
+```
+
+**Key Points:**
+- Two separate services: Rails + Node (runs via Procfile)
+- Tools execute via HTTP callbacks to Rails API
+- Independent scaling, microservices architecture
+
 ![Claude Agent SDK Ruby](docs/spike-typescript-sdk-screenshot.png)
 
 ### Spike 3 (Claude ACP)
+
+**Architecture:**
+```
+┌─────────┐      ┌──────────────┐      ┌─────────────────┐      ┌────────────┐
+│ Browser │─────▶│ Rails Server │─────▶│ Claude CLI      │─────▶│ Claude API │
+│         │◀─────│ (ActionCable)│◀─────│  (subprocess)   │◀─────│            │
+└─────────┘      └──────────────┘      │ --output-format │      └────────────┘
+                         │             │  stream-json    │
+                         │             └─────────────────┘
+                         │                        │
+                         │                        │ MCP protocol
+                         │                        │ (JSON-RPC stdio)
+                         │                        ▼
+                         │              ┌─────────────────┐
+                         │              │ Ruby MCP Server │
+                         │              │  mcp_server.rb  │
+                         │              └─────────────────┘
+                         │                        │
+                         │                        ▼
+                         │              ┌─────────────────┐
+                         └─────────────▶│ ActiveRecord    │
+                            Direct      │  (check_schema) │
+                            access      └─────────────────┘
+```
+
+**Key Points:**
+- Single Rails service, spawns Claude CLI subprocess per connection
+- Ruby MCP server communicates via stdio (JSON-RPC)
+- Pure Ruby tool development with direct ActiveRecord access
+- Clean separation via MCP protocol
 
 ![Claude ACP](docs/spike-acp-screenshot.png)
 
