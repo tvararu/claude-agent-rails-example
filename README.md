@@ -56,6 +56,12 @@ mise install
 bin/setup
 ```
 
+## Results
+
+### Spike 1 (Claude Agent SDK Ruby)
+
+![Claude Agent SDK Ruby](docs/spike-ruby-sdk-screenshot.png)
+
 ## License
 
 [MIT](LICENSE).

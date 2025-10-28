@@ -1,0 +1,12 @@
+{
+  "name": "claude-agent-rails-spike",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rails spike for Claude Code agent integration",
+  "scripts": {
+    "postinstall": "echo 'Claude Code CLI installed locally'"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-code": "^2.0.0"
+  }
+}
