@@ -62,6 +62,10 @@ bin/setup
 
 ![Claude Agent SDK Ruby](docs/spike-ruby-sdk-screenshot.png)
 
+### Spike 2 (Claude Agent SDK TypeScript)
+
+![Claude Agent SDK Ruby](docs/spike-typescript-sdk-screenshot.png)
+
 ## License
 
 [MIT](LICENSE).

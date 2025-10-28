@@ -9,3 +9,8 @@
 # Option 2: API Key (uses pay-as-you-go billing)
 # Get from: https://console.anthropic.com/settings/keys
 # ANTHROPIC_API_KEY = "sk-ant-api03-..."
+
+# TypeScript SDK Spike Configuration
+# NODE_SERVICE_URL = "http://localhost:3001"
+# RAILS_API_URL = "http://localhost:3000"
+# RAILS_ROOT = "/absolute/path/to/claude-agent-rails-spike"
