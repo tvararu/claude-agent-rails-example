@@ -18,6 +18,16 @@ separate subprocesses
 
 The spikes are documented in `./docs/`.
 
+## Architecture comparison
+
+| Aspect | Ruby SDK | TypeScript SDK | ACP |
+|--------|----------|----------------|-----|
+| **Communication** | Gem manages subprocess | HTTP POST/SSE | JSON-RPC stdio |
+| **Services** | Single (Rails) | Multi (Rails + Node) | Single (Rails) |
+| **Tool Pattern** | In-process MCP | HTTP callbacks | MCP via stdio |
+| **Language** | Pure Ruby | Ruby + TypeScript | Ruby + MCP protocol |
+| **Standardization** | Unofficial gem | Official SDK | Emerging protocol |
+
 ## Motivation
 
 Claude Code is a very powerful framework for automation, not just for writing
@@ -65,6 +75,10 @@ bin/setup
 ### Spike 2 (Claude Agent SDK TypeScript)
 
 ![Claude Agent SDK Ruby](docs/spike-typescript-sdk-screenshot.png)
+
+### Spike 3 (Claude ACP)
+
+![Claude ACP](docs/spike-acp-screenshot.png)
 
 ## License
 

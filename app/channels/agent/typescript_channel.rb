@@ -29,7 +29,7 @@ class Agent::TypescriptChannel < ApplicationCable::Channel
   private
 
   def current_user_id
-    @current_user_id ||= connection.connection_identifier
+    connection_id
   end
 
   def query_node_service(message)
