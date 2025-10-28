@@ -49,6 +49,8 @@ the different implementations probably draw from each other a bit. I had to
 /compact after each one, and had to /compact mid-way through the ACP one which
 was trickiest.
 
+**[📋 Read LLM's comprehensive analysis and conclusions →](docs/llm-conclusions.md)**
+
 ## Architecture comparison
 
 | Aspect | Ruby SDK | TypeScript SDK | ACP |
@@ -121,6 +123,8 @@ bin/setup
 - MCP tools execute in-process with direct ActiveRecord access
 - Simplest integration, minimal configuration
 
+**[📄 Read full spike results →](docs/spike-ruby-sdk-results.md)**
+
 ![Claude Agent SDK Ruby](docs/spike-ruby-sdk-screenshot.png)
 
 ### Spike 2 (Claude Agent SDK TypeScript)
@@ -150,6 +154,8 @@ bin/setup
 - Two separate services: Rails + Node (runs via Procfile)
 - Tools execute via HTTP callbacks to Rails API
 - Independent scaling, microservices architecture
+
+**[📄 Read full spike results →](docs/spike-typescript-sdk-results.md)**
 
 ![Claude Agent SDK Ruby](docs/spike-typescript-sdk-screenshot.png)
 
@@ -184,6 +190,8 @@ bin/setup
 - Ruby MCP server communicates via stdio (JSON-RPC)
 - Pure Ruby tool development with direct ActiveRecord access
 - Clean separation via MCP protocol
+
+**[📄 Read full spike results →](docs/spike-acp-results.md)**
 
 ![Claude ACP](docs/spike-acp-screenshot.png)
 
