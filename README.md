@@ -1,24 +1,45 @@
-# README
+# Claude Agent Rails Spike
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an exploration into 3 different approaches to integrating Claude Code /
+Claude Agent with a Rails application:
 
-Things you may want to cover:
+1) Via
+[claude-agent-sdk-ruby](https://github.com/ya-luotao/claude-agent-sdk-ruby), an
+unofficial Ruby port of the Claude Agent Python SDK which spawns Node
+subprocesses
 
-* Ruby version
+2) Via
+[claude-agent-sdk-typescript](https://github.com/anthropics/claude-agent-sdk-typescript),
+the official TypeScript SDK, and a persistent sidecar Node process
 
-* System dependencies
+3) Via [claude-code-acp](https://github.com/zed-industries/claude-code-acp), an
+unofficial [Agent Client Protocol](https://agentclientprotocol.com) wrapper and
+separate subprocesses
 
-* Configuration
+## Setup
 
-* Database creation
+This repo was generated with:
 
-* Database initialization
+```sh
+rails new claude-agent-rails-spike \
+          -c tailwind \
+          --skip-action-mailer \
+          --skip-action-mailbox \
+          --skip-action-text \
+          --skip-jbuilder \
+          --skip-kamal \
+          --skip-docker \
+          --skip-ci \
+          --skip-test
+```
 
-* How to run the test suite
+To run:
 
-* Services (job queues, cache servers, search engines, etc.)
+```sh
+mise install
+bin/setup
+```
 
-* Deployment instructions
+## License
 
-* ...
+[MIT](LICENSE).
