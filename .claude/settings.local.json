@@ -5,7 +5,13 @@
       "Bash(bin/setup)",
       "WebSearch",
       "WebFetch(domain:uithub.com)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl:*)",
+      "Bash(npm view:*)",
+      "Read(//private/tmp/**)",
+      "Bash(tar:*)",
+      "Bash(npm pack:*)",
+      "Bash(node test-sdk.mjs:*)"
     ],
     "deny": [],
     "ask": []

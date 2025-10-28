@@ -16,4 +16,8 @@ Rails.application.routes.draw do
     get "claude-agent-sdk-typescript", to: "typescript#index"
     get "claude-code-acp", to: "acp#index"
   end
+
+  namespace :api do
+    get "schema", to: "schema#index"
+  end
 end
